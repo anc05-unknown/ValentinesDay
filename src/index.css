@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --primary: hsl(350, 80%, 55%);
+  --primary-light: hsl(350, 80%, 70%);
+  --secondary: hsl(330, 70%, 75%);
+  --accent: hsl(45, 100%, 65%);
+  --bg: hsl(350, 100%, 99%);
+  --text: hsl(350, 50%, 15%);
+  --glass: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 62, 78, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #ffc2d1;
+  background: linear-gradient(135deg, #ffc2d1 0%, #ff85a1 100%);
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Magic Heart Wand Cursor */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M12 2l1.5 4.5h4.5l-3.5 3 1.5 4.5-4-3-4 3 1.5-4.5-3.5-3h4.5z" fill="%23ffd700"/><path d="M11 10l-6 12m1-1l6-12" stroke="%238b4513" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="5" r="3" fill="%23ff3e4e" opacity="0.8"/></svg>') 12 5, auto;
+}
+
+button,
+a {
+  /* Glowing Heart Wand for Interactive */
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path d="M12 2l1.5 4.5h4.5l-3.5 3 1.5 4.5-4-3-4 3 1.5-4.5-3.5-3h4.5z" fill="%23ffd700"/><path d="M11 10l-6 12m1-1l6-12" stroke="%238b4513" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="5" r="4" fill="%23ff7eb9" opacity="0.9"/></svg>') 12 5, pointer !important;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 62, 78, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(255, 62, 78, 0.05);
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff3e4e 0%, #ff7eb9 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(255, 62, 78, 0.3);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff7eb9 0%, #ff3e4e 100%);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 62, 78, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 62, 78, 0.05);
+  color: #ff3e4e;
+  border: 1px solid rgba(255, 62, 78, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 62, 78, 0.1);
+  transform: translateY(-2px);
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg,
+      transparent 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 55%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+  }
+
+  100% {
+    transform: translateX(100%) translateY(100%);
+  }
+}
+
+.polaroid {
+  background: white;
+  padding: 15px 15px 45px 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.polaroid-image-container {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #fdfdfd;
+  border: 1px solid #f0f0f0;
+}
+
+.polaroid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.polaroid:hover {
+  box-shadow: 0 25px 50px rgba(255, 62, 78, 0.2);
+}
+
+.polaroid:hover .polaroid-image {
+  transform: scale(1.1);
+}
+
+.polaroid-caption {
+  margin-top: 20px;
+  color: #1a1a1a;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.gallery-grid {
+  perspective: 1000px;
+}
+
+/* Premium Gift Box & Letter */
+.gift-container {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.gift-box-premium {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.gift-body-premium {
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(135deg, #ff3e4e, #c01c2b);
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  border-radius: 4px;
+}
+
+.gift-lid-premium {
+  width: 110px;
+  height: 25px;
+  background: linear-gradient(135deg, #ff7eb9, #ff3e4e);
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gift-box-premium::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 80px;
+  background: #ffd700;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  z-index: 1;
+}
+
+.gift-bow-premium {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 3;
+}
+
+.gift-bow-premium::before,
+.gift-bow-premium::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #ffd700;
+  border-radius: 50% 50% 0 50%;
+  transform: rotate(45deg);
+  top: 10px;
+}
+
+.gift-bow-premium::after {
+  transform: rotate(135deg);
+  left: 10px;
+}
+
+.gift-shadow {
+  width: 80px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  filter: blur(4px);
+}
+
+.letter-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 40px auto;
+  perspective: 1500px;
+}
+
+.letter-paper {
+  background: #fff9f0;
+  padding: clamp(20px, 5vw, 50px);
+  min-height: 400px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transform-origin: top;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.letter-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.wax-seal {
+  width: 60px;
+  height: 60px;
+  background: #a31d1d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #ffd700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.letter-content {
+  text-align: center;
+  color: #2c1810;
+}
+
+.letter-footer {
+  margin-top: 40px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: #a31d1d;
+}
+
+.letter-paper.glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 62, 78, 0.2);
+  color: #2c1810;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 1.1rem !important;
+    min-height: 48px;
+    /* Touch target minimum */
+  }
+}
+
+/* Utils */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}
